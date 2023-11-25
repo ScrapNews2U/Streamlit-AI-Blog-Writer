@@ -82,7 +82,7 @@ def make_prompt(prompt, topic='<<TOPIC>>', category='<<CATEGORY>>', letters='<<L
         prompt = prompt.replace('<<LETTERS>>', str(letters))
     return prompt
 
-st.title("AI를 활용한 블로그 자동 글쓰기 프로그램 ver 0.1")
+st.title("AI를 활용한 블로그 자동 글쓰기 프로그램 ( ver 0.1 )")
 st.info("**#1 단계** : https://beta.openai.com 가입 후, 발급받은 API KEY를 아래 칸에 입력")
 
 value=''
