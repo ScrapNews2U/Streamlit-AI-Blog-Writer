@@ -100,7 +100,7 @@ if apikey:
                 button = st.button('생성하기')
                 prompt = make_prompt(prompt=prompt, topic=topic, category=category, letters=letters)
                 st.markdown(f'**최종 지시사항** : {prompt} ')
-                st.warning("필요시, 추가 지시사항 입력 가능( 영어로 입력 추천 )")
+                st.warning("필요시, 추가 지시사항 입력 가능 ( 영어로 입력 추천 )")
                 prompt_add = st.text_area(label='추가 지시사항', placeholder='예시 : To enhance creativity, randomness, diversity, emotion and empathy and lower the consistency in the writing.', height=200)
                 if button:
                     filename = write_blog(prompt=prompt, prompt_add=prompt_add)
