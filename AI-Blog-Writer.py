@@ -2,7 +2,6 @@
 # 실행 : streamlit run AI-Blog-Writer.py // streamlit run [사용자지정 이름].py
 # streamlit은 계정 당 3개 앱까지만 실행 무료
 
-import openai
 import re
 import zipfile
 import streamlit as st
@@ -27,7 +26,6 @@ def write_blog(prompt, prompt_add):
             {"role": "user", "content": prompt_final}
         ],
     )
-    st.markdown(f' {result} ')
 
     body = result.choices[0].message.content
 
@@ -35,14 +33,12 @@ def write_blog(prompt, prompt_add):
 
     header = make_header(topic=topic, category=category, tags=tags)
 
-    # body = '\n'.join(result['choices'][0]['message']['content'].strip().split('\n')[1:])
-
     output = header + body
 
-    yesterday = datetime.now() - timedelta(days=1)
-    timestring = yesterday.strftime('%Y-%m-%d')
+    today = datetime.now()
+    timestring = today.strftime('%Y-%m-%d')
     filename = f"{timestring}-{'-'.join(topic.lower().split())}.md"
-    with open(filename, 'w') as f:
+    with open(filename, 'w', encoding='UTF-8') as f:
         f.write(output)
         f.close()
     return filename
@@ -65,7 +61,7 @@ layout: single
 title:  "{topic}"
 categories: {category}
 tag: [{tags}]
----'''
+--- \n '''
     return page_head
 
 def get_file(filename):
@@ -103,7 +99,7 @@ if apikey:
                 st.info("**#5 단계** : 최종 지시사항 확인 후, 생성 버튼 클릭 ( 생성시간은 AI상황에 따라 다름 )")
                 button = st.button('생성하기')
                 prompt = make_prompt(prompt=prompt, topic=topic, category=category, letters=letters)
-                st.markdown(f' {prompt} ')
+                st.markdown(f'**최종 지시사항** : {prompt} ')
                 st.warning("필요시, 추가 지시사항 입력 가능( 영어로 입력 추천 )")
                 prompt_add = st.text_area(label='추가 지시사항', placeholder='예시 : To enhance creativity, randomness, diversity, emotion and empathy and lower the consistency in the writing.', height=200)
                 if button:
