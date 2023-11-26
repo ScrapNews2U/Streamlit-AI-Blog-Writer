@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 
 prompt = f'''Write blog posts in markdown format.\n
 Write the theme of your blog as <<TOPIC>> and its category is <<CATEGORY>>.\n
-And write an entire blog within <<LETTERS>> letters.\n
+And write an entire blog within <<LETTERS>> characters.\n
 Include the helpful information as a list style.\n
 Highlight, bold, or italicize important words or sentences.\n
 The audience of this article is 20-40 years old.\n
